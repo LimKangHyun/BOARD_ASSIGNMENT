@@ -24,7 +24,7 @@ public class UriParser {
         }
 
         String[] uriSplit = uri.split("\\?", 2); // ?를 구분자로 사용
-        if(uriSplit.length != 2) {
+        if(uriSplit.length == 2) {
             setParameter(uriSplit[1]);
         }
 
@@ -53,10 +53,11 @@ public class UriParser {
                     if (parameterData[1].equals("")) {
                         throw new IllegalArgumentException("잘못된 파라미터 값이 입력되었습니다. URL을 확인해주세요.");
                     }
+                    parameters.put(parameterData[0], parameterData[1]);
                 }
             } else {
                 String[] split = uriPart.split("=", 2);
-                if (split.length != 2) {
+                if (split[1].equals("")) {
                     throw new IllegalArgumentException("잘못된 파라미터 값이 입력되었습니다. URL을 확인해주세요.");
                 }
                 parameters.put(split[0], split[1]);
